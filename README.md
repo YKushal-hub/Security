@@ -112,9 +112,6 @@ risk-engine/
 - ✅ **Canonicalization**: Inputs are normalized before hashing to ensure consistent signatures
 - ✅ **Compiler Hardening**: Built with `-fno-builtin`, `-Werror`, and stack protection flags
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
