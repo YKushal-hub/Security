@@ -1,164 +1,121 @@
-Security Risk Engine
+# Risk Engine - Security Risk Assessment Library
 
 A deterministic, fail-closed security decision engine implemented in C11 for evaluating authentication and authorization risk.
-The engine consumes validated security signals and produces one of three decisions: ALLOW, STEP_UP, or DENY.
 
-This project is designed for critical security paths where correctness, predictability, and auditability are more important than convenience or dynamic flexibility.
+## Features
 
-🔐 Problem Statement
+- 🛡️ **Fail-Closed Architecture** - Secure by default, ensuring any failure results in a safe deny state
+- ⚡ **Deterministic Evaluation** - Guaranteed consistent outcomes through strictly ordered rule evaluation (Integrity → Device → Failures)
+- 📝 **Immutable Audit Logging** - Cryptographically verifiable audit trails using SHA-256 input binding
+- 🚀 **High Performance** - Zero dynamic memory allocation on the evaluation hot path
+- 🧩 **Modular Rule Design** - Extensible architecture for adding new risk signals
+- ✅ **Strict Input Validation** - Comprehensive schema validation and normalization before processing
 
-Modern authentication systems rely on multiple security signals (device trust, integrity checks, failure history).
-If these signals are evaluated inconsistently or fail open under error conditions, attackers can exploit the system.
+## Tech Stack
 
-This engine addresses that risk by enforcing:
+- **C11** - Core implementation language
+- **GNU Make** - Build system
+- **GCC / Clang** - Supported compilers
+- **Standard C Library** - Zero external dependencies
+- **SHA-256** - Cryptographic operations for integrity and logging
+- **Bash** - Test automation scripts
 
-Fail-closed behavior
+## Getting Started
 
-Strict evaluation order
+### Prerequisites
 
-Cryptographically verifiable audit logs
+- GCC or Clang compiler
+- GNU Make
+- Bash (for running test scripts)
 
-🚀 Key Features
+### Installation
 
-🛡️ Fail-Closed Architecture
+1. **Clone the repository:**
+```bash
+git clone https://github.com/yourusername/risk-engine.git
+cd risk-engine
+```
 
-Any validation failure, malformed input, or internal error results in a DENY decision.
+2. **Build the project:**
+```bash
+make
+```
 
-Prevents privilege escalation caused by partial or corrupted data.
+This will produce the `risk_engine.o` object file ready for linking.
 
-⚡ Deterministic Rule Evaluation
+### Development
 
-Rules are evaluated in a fixed, predefined order:
+**Run all unit tests:**
+```bash
+./run_all_unit_tests.sh
+```
 
-Integrity → Device Trust → Failure History
+**Clean build artifacts:**
+```bash
+make clean
+```
 
-Guarantees reproducible outcomes for identical inputs.
+### Integration
 
-📝 Immutable Audit Logging
+To integrate the Risk Engine into your application, link against `risk_engine.o` and include the public headers.
 
-Every evaluation is bound to a SHA-256 hash of canonicalized input.
+```c
+#include "engine/evaluate.h"
+#include "decision.h"
 
-Enables post-incident verification and tamper detection.
+// Example usage
+RiskInput input = { /* populate risk signals */ };
+uint32_t expected_hash = 0x12345678;
+RiskDecision decision = evaluate_risk(&input, expected_hash);
 
-🧩 Modular Rule Design
+if (decision == RISK_ALLOW) {
+    // Grant access
+} else {
+    // Deny or step-up authentication
+}
+```
 
-Risk signals and rules are logically separated.
+## Project Structure
 
-New rules can be added without altering the evaluation contract.
-
-🏎️ High-Performance, Low-Level Implementation
-
-Written in C11
-
-No runtime dependencies
-
-No dynamic allocation on the hot path
-
-🛠️ Technology Stack
-Component	Choice
-Language	C (C11 standard)
-Build System	Make
-Compiler	GCC (recommended), Clang compatible
-Dependencies	None (Standard C Library only)
-
-
-📂 Project Structure
-Security/
+```
+risk-engine/
 ├── include/              # Public API headers
 │   ├── decision.h        # Risk decision enums
-│   └── ...
-├── src/
+│   ├── error.h           # Error codes
+│   └── version.h         # Version information
+├── src/                  # Source code
 │   ├── engine/           # Core evaluation pipeline
-│   ├── rules/            # Individual risk rule logic
-│   ├── input/            # Input validation & sanitization
+│   ├── rules/            # Risk rule logic (integrity, device, failures)
+│   ├── input/            # Input validation & normalization
 │   ├── audit/            # Audit logging mechanisms
 │   └── crypto/           # SHA-256 implementation
 ├── test/                 # Unit and integration tests
 ├── Makefile              # Build configuration
-└── README.md             # Documentation
+├── run_all_unit_tests.sh # Test runner script
+└── README.md             # This file
+```
 
-⚙️ Build & Installation
-Prerequisites
+## Core Components
 
-GCC or Clang
+- **RiskInput** - Struct capturing all security context (IP, Device ID, User History)
+- **RiskDecision** - Enum representing the evaluation outcome (ALLOW, STEP_UP, DENY)
+- **Rules** - Modular logic units:
+    - **Integrity Rule**: Verifies data tamper resistance
+    - **Device Rule**: Validates device trust signals
+    - **Failures Rule**: Checks history of recent failures
 
-GNU Make
+## Security Features
 
-Build
-make
+- ✅ **Fail-Closed Logic**: Any internal error or validation failure defaults to DENY
+- ✅ **Memory Safety**: No `malloc` usage during request processing preventing heap fragmentation and leaks
+- ✅ **Input Sanitization**: Strict validation of all input fields against defined schemas
+- ✅ **Canonicalization**: Inputs are normalized before hashing to ensure consistent signatures
+- ✅ **Compiler Hardening**: Built with `-fno-builtin`, `-Werror`, and stack protection flags
 
+## Contributing
 
-This produces:
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
-risk_engine.o
+## License
 
-
-which can be statically or dynamically linked into your application.
-
-Clean
-make clean
-
-💻 Usage Example
-API Integration (C)
-#include "engine/evaluate.h"
-#include "decision.h"
-
-int main() {
-    RiskInput input = {
-        /* populate validated security signals */
-    };
-
-    uint32_t expected_hash = 0x12345678; // Obtained from a trusted source
-
-    RiskDecision decision = evaluate_risk(&input, expected_hash);
-
-    switch (decision) {
-        case RISK_ALLOW:
-            // Grant access
-            break;
-
-        case RISK_STEP_UP:
-            // Trigger MFA / secondary verification
-            break;
-
-        case RISK_DENY:
-        default:
-            // Deny access and log incident
-            break;
-    }
-
-    return 0;
-}
-
-🔒 Security Design Considerations
-
-Input Validation
-
-All inputs are validated against expected schemas before evaluation.
-
-Invalid or unexpected fields immediately terminate processing.
-
-Memory Safety
-
-No dynamic memory allocation during evaluation.
-
-Reduces attack surface related to heap corruption and memory leaks.
-
-Canonical Hashing
-
-Inputs are normalized before hashing.
-
-Ensures audit logs match exactly what was evaluated.
-
-Fail-Fast Error Handling
-
-Errors are surfaced immediately and mapped to DENY.
-
-Prevents undefined behavior from propagating into decisions.
-
-🧠 Design Rationale
-Design Choice	Reason
-C11	Predictable performance, no runtime overhead
-Fail-Closed	Security systems must default to denial
-Determinism	Required for auditing and incident response
-No Dependencies	Reduces supply-chain and runtime risk
+MIT
