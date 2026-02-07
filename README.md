@@ -33,7 +33,7 @@ A deterministic, fail-closed security decision engine implemented in C11 for eva
 1. **Clone the repository:**
 ```bash
 git clone https://github.com/yourusername/risk-engine.git
-cd risk-engine
+cd Security
 ```
 
 2. **Build the project:**
@@ -78,7 +78,7 @@ if (decision == RISK_ALLOW) {
 ## Project Structure
 
 ```
-risk-engine/
+Security/
 ├── include/              # Public API headers
 │   ├── decision.h        # Risk decision enums
 │   ├── error.h           # Error codes
