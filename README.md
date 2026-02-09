@@ -1,4 +1,3 @@
-Security logo
 Security Risk Assessment Library Tests CII Best Practices
 
 ## Table of Contents
