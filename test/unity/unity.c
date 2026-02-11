@@ -135,10 +135,6 @@ static UNITY_UINT UnityPrintAnsiEscapeString(const char* string)
 #endif
 
 /*-----------------------------------------------*/
-/*
- * Prints a string to the output (stdout or buffer).
- * Handles ANSI color codes if enabled.
- */
 void UnityPrint(const char* string)
 {
     const char* pch = string;
@@ -561,10 +557,6 @@ static void UnityTestResultsFailBegin(const UNITY_LINE_TYPE line)
 }
 
 /*-----------------------------------------------*/
-/*
- * Finalizes the current test run.
- * Updates pass/fail/ignore counters and prints the result.
- */
 void UnityConcludeTest(void)
 {
     if (Unity.CurrentTestIgnored)
@@ -737,9 +729,6 @@ static int UnityIsOneArrayNull(UNITY_INTERNAL_PTR expected,
  *-----------------------------------------------*/
 
 /*-----------------------------------------------*/
-/*
- * Asserts that the masked bits of the actual value match the expected value.
- */
 void UnityAssertBits(const UNITY_INT mask,
                      const UNITY_INT expected,
                      const UNITY_INT actual,
@@ -761,10 +750,6 @@ void UnityAssertBits(const UNITY_INT mask,
 }
 
 /*-----------------------------------------------*/
-/*
- * Asserts that two integer values are equal.
- * Prints detailed failure content if they differ.
- */
 void UnityAssertEqualIntNumber(const UNITY_INT expected,
                                const UNITY_INT actual,
                                const char* msg,

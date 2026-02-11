@@ -7,10 +7,6 @@
 
 #define AUDIT_LOG_FILE "audit.log"
 
-/*
- * Reads the last audit record from the provided file stream.
- * Returns 0 on success, or -1 if the file is empty or an error occurs.
- */
 static int read_last_record(FILE* f, AuditRecord* out)
 {
     if (fseek(f, -(long)sizeof(AuditRecord), SEEK_END) != 0) {
@@ -22,10 +18,6 @@ static int read_last_record(FILE* f, AuditRecord* out)
     return 0;
 }
 
-/*
- * Computes the SHA256 hash of the audit record fields.
- * The hash depends on version, index, decision, input hash, and previous record hash.
- */
 static void compute_record_hash(AuditRecord* rec)
 {
     Sha256Ctx ctx;
@@ -40,10 +32,6 @@ static void compute_record_hash(AuditRecord* rec)
     sha256_final(&ctx, rec->record_hash);
 }   
 
-/*
- * Appends a new risk decision to the audit log.
- * Maintains a cryptographic chain by including the hash of the previous record.
- */
 int audit_log_append(RiskDecision decision,
                      const uint8_t risk_input_hash[AUDIT_HASH_SIZE])
 {

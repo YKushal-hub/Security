@@ -1,9 +1,5 @@
 #include "rules/failures.h"
 
-/*
- * Evaluates risk based on the failure count signal.
- * Denies if failures >= 5, steps up if > 0.
- */
 RiskDecision failure_rule(const RiskInput* input) {
     for (size_t i = 0; i < input->signal_count; i++) {
         if (input->signals[i].signal_id == SIGNAL_FAILURE_COUNT) {

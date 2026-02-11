@@ -14,13 +14,7 @@ static RiskInput minimal_input = {
     .signal_count = 0
 };
 
-/*
- * Unity setup stub.
- */
 void setUp(void) {}
-/*
- * Unity teardown stub.
- */
 void tearDown(void) {}
 
 /*
@@ -40,9 +34,6 @@ void test_device_rule_minimal_input_is_safe(void)
     );
 }
 
-/*
- * Main entry point for device rule unit tests.
- */
 int main(void)
 {
     UNITY_BEGIN();

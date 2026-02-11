@@ -2,13 +2,7 @@
 #include "input/normalize.h"
 #include <stdint.h>
 
-/*
- * Unity setup stub.
- */
 void setUp(void) {}
-/*
- * Unity teardown stub.
- */
 void tearDown(void) {}
 
 /*
@@ -34,9 +28,6 @@ void test_normalize_rejects_null_output(void)
     TEST_ASSERT_NOT_EQUAL(0, rc);
 }
 
-/*
- * Main entry point for normalize unit tests.
- */
 int main(void)
 {
     UNITY_BEGIN();

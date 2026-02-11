@@ -9,18 +9,9 @@ static RiskInputHeader header = {
     .signal_bitmap_hash = 0x1111
 };
 
-/*
- * Unity setup stub.
- */
 void setUp(void) {}
-/*
- * Unity teardown stub.
- */
 void tearDown(void) {}
 
-/*
- * Verifies that the hash function produces identical output for identical input.
- */
 void test_hash_determinism(void)
 {
     RiskInput input = {
@@ -37,9 +28,6 @@ void test_hash_determinism(void)
     TEST_ASSERT_EQUAL_MEMORY(h1, h2, 32);
 }
 
-/*
- * Main entry point for hash unit tests.
- */
 int main(void)
 {
     UNITY_BEGIN();

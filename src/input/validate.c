@@ -1,10 +1,6 @@
 #include "input/validate.h"
 #include "version.h"
 
-/*
- * Validates the structure, versioning, and integrity of the RiskInput.
- * Checks for missing required signals and correct signal ordering.
- */
 RiskError validate_risk_input(const RiskInput* input, uint32_t expected_hash) {
     if (!input || !input->header) {
         return RISK_ERR_INVALID_HEADER;
