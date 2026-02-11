@@ -4,6 +4,10 @@
 #include "input/hash.h"
 #include "crypto/sha256.h"
 
+/*
+ * Computes a canonical SHA-256 hash of the RiskInput structure.
+ * Hashes header fields and all signal data to ensure integrity.
+ */
 int compute_risk_input_hash(
     const RiskInput* input,
     uint8_t out[RISK_INPUT_HASH_SIZE]

@@ -2,9 +2,18 @@
 #include "crypto/sha256.h"
 #include <string.h>
 
+/*
+ * Unity setup stub.
+ */
 void setUp(void) {}
+/*
+ * Unity teardown stub.
+ */
 void tearDown(void) {}
 
+/*
+ * Verifies that the SHA-256 implementation is consistent and reproducible.
+ */
 void test_sha256_consistency(void)
 {
     const uint8_t data[] = "abc";
@@ -23,6 +32,9 @@ void test_sha256_consistency(void)
     TEST_ASSERT_EQUAL_MEMORY(h1, h2, 32);
 }
 
+/*
+ * Main entry point for SHA-256 unit tests.
+ */
 int main(void)
 {
     UNITY_BEGIN();

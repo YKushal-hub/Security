@@ -8,9 +8,18 @@ static RiskInputHeader bad_header = {
     .signal_bitmap_hash = 0
 };
 
+/*
+ * Unity setup stub.
+ */
 void setUp(void) {}
+/*
+ * Unity teardown stub.
+ */
 void tearDown(void) {}
 
+/*
+ * Verifies that the integrity rule denies input with an invalid header.
+ */
 void test_integrity_rule_invalid_header(void)
 {
     RiskInput input = {
@@ -22,6 +31,9 @@ void test_integrity_rule_invalid_header(void)
     TEST_ASSERT_EQUAL(RISK_DENY, integrity_rule(&input));
 }
 
+/*
+ * Main entry point for integrity rule unit tests.
+ */
 int main(void)
 {
     UNITY_BEGIN();

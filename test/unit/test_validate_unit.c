@@ -11,7 +11,13 @@ static SignalEntry some_signals[] = {
     { .signal_id = 1, .normalized_value = 10 }
 };
 
+/*
+ * Unity setup stub.
+ */
 void setUp(void) {}
+/*
+ * Unity teardown stub.
+ */
 void tearDown(void) {}
 
 /*
@@ -55,6 +61,9 @@ void test_validate_partially_constructed_input_is_rejected(void)
     TEST_ASSERT_NOT_EQUAL(0, rc);
 }
 
+/*
+ * Main entry point for validation unit tests.
+ */
 int main(void)
 {
     UNITY_BEGIN();

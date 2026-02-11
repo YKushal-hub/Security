@@ -9,6 +9,10 @@
 #include "decision.h"
 
 /* Attempt to declare a fake alternate entry point */
+/*
+ * Attempt to declare a fake alternate entry point.
+ * This function should not be reachable or linkable in the secure build.
+ */
 RiskDecision bypass_decision(void)
 {
     /* There should be NO way to construct a decision directly */

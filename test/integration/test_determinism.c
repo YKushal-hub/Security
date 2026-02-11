@@ -9,6 +9,10 @@
 
 
 /* Create a fixed, deterministic RiskInput */
+/*
+ * Creates a fixed, deterministic RiskInput for testing.
+ * Returns a static structure to ensure consistent data across calls.
+ */
 static RiskInput make_fixed_input(void)
 {
     static RiskInputHeader header = {
@@ -31,6 +35,10 @@ static RiskInput make_fixed_input(void)
     return input;
 }
 
+/*
+ * Main entry point for the determinism test.
+ * Verifies that running the engine twice on the same input yields identical results.
+ */
 int main(void)
 {
     RiskInput input = make_fixed_input();

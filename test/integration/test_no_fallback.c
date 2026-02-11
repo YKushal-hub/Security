@@ -14,6 +14,9 @@
  * - Verify DENY is final and cannot be overridden
  */
 
+/*
+ * Creates a RiskInput that is guaranteed to be denied (invalid version).
+ */
 static RiskInput make_deny_input(void)
 {
     /* Intentionally invalid header to force DENY */
@@ -32,6 +35,10 @@ static RiskInput make_deny_input(void)
     return input;
 }
 
+/*
+ * Main entry point for no-fallback tests.
+ * Verifies that a DENY decision is consistent and cannot be bypassed by retrying.
+ */
 int main(void)
 {
     RiskInput input = make_deny_input();
