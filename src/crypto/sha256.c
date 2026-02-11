@@ -19,6 +19,10 @@ static const uint32_t k[64] = {
   0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
 };
 
+/*
+ * Performs the main SHA-256 transformation on a 64-byte block of data.
+ * Updates the state with the results of the rounds.
+ */
 static void sha256_transform(Sha256Ctx* ctx, const uint8_t data[64])
 {
     uint32_t m[64], a,b,c,d,e,f,g,h,t1,t2;
@@ -48,6 +52,10 @@ static void sha256_transform(Sha256Ctx* ctx, const uint8_t data[64])
     ctx->state[4]+=e; ctx->state[5]+=f; ctx->state[6]+=g; ctx->state[7]+=h;
 }
 
+/*
+ * Initializes the SHA-256 context with standard constants.
+ * Resets the bit and data length counters.
+ */
 void sha256_init(Sha256Ctx* ctx)
 {
     ctx->datalen = 0;
@@ -58,6 +66,10 @@ void sha256_init(Sha256Ctx* ctx)
     ctx->state[6]=0x1f83d9ab; ctx->state[7]=0x5be0cd19;
 }
 
+/*
+ * Updates the SHA-256 context with a new block of data.
+ * Processes full 64-byte blocks and buffers remaining data.
+ */
 void sha256_update(Sha256Ctx* ctx, const uint8_t* data, size_t len)
 {
     for (size_t i = 0; i < len; i++) {
@@ -70,6 +82,10 @@ void sha256_update(Sha256Ctx* ctx, const uint8_t* data, size_t len)
     }
 }
 
+/*
+ * Finalizes the SHA-256 hash computation.
+ * Pads the remaining data, processes the final block, and produces the 32-byte hash.
+ */
 void sha256_final(Sha256Ctx* ctx, uint8_t hash[SHA256_HASH_SIZE])
 {
     size_t i = ctx->datalen;

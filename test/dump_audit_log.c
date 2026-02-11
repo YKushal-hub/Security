@@ -3,6 +3,9 @@
 
 #include "audit/record.h"
 
+/*
+ * Helper function to convert a RiskDecision enum value to a human-readable string.
+ */
 static const char* decision_to_string(uint16_t d)
 {
     switch (d) {
@@ -13,6 +16,10 @@ static const char* decision_to_string(uint16_t d)
     }
 }
 
+/*
+ * Main entry point for the audit log dump tool.
+ * Reads 'audit.log' and prints each record's details to stdout.
+ */
 int main(void)
 {
     FILE* f = fopen("audit.log", "rb");

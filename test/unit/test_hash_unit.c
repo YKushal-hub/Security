@@ -12,6 +12,10 @@ static RiskInputHeader header = {
 void setUp(void) {}
 void tearDown(void) {}
 
+/*
+ * Verifies that the hash computation is deterministic.
+ * Identical inputs must produce identical hash outputs.
+ */
 void test_hash_determinism(void)
 {
     RiskInput input = {

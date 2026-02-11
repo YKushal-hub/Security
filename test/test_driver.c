@@ -8,6 +8,10 @@
 /* Example signal bitmap hash (must match your registry) */
 #define EXPECTED_HASH 0xDEADBEEF
 
+/*
+ * Main entry point for the test driver.
+ * Constructs a sample RiskInput and prints the evaluation result.
+ */
 int main(void) {
     /* Header */
     RiskInputHeader header = {

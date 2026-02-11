@@ -23,6 +23,10 @@ void tearDown(void) {}
  * This test ensures it returns a valid RiskDecision
  * and does not crash for minimal valid input.
  */
+/*
+ * Contract: device_rule operates on validated, non-NULL input.
+ * This test ensures it returns a valid RiskDecision and does not crash for minimal valid input.
+ */
 void test_device_rule_minimal_input_is_safe(void)
 {
     RiskDecision d = device_rule(&minimal_input);

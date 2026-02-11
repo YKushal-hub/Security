@@ -1,5 +1,9 @@
 #include "rules/device.h"
 
+/*
+ * Evaluates risk based on the trusted device signal.
+ * Allows if trusted, steps up if not.
+ */
 RiskDecision device_rule(const RiskInput* input) {
     for (size_t i = 0; i < input->signal_count; i++) {
         if (input->signals[i].signal_id == SIGNAL_DEVICE_TRUSTED) {

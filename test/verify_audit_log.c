@@ -5,6 +5,9 @@
 #include "audit/record.h"
 #include "crypto/sha256.h"
 
+/*
+ * Recomputes the SHA-256 hash of an audit record to verify its integrity.
+ */
 static int recompute_record_hash(const AuditRecord* rec,
                                  uint8_t out[AUDIT_HASH_SIZE])
 {
@@ -35,6 +38,10 @@ static int recompute_record_hash(const AuditRecord* rec,
     return 0;
 }
 
+/*
+ * Main entry point for the audit log verification tool.
+ * Validates the cryptographic chain and integrity of 'audit.log'.
+ */
 int main(void)
 {
     FILE* f = fopen("audit.log", "rb");

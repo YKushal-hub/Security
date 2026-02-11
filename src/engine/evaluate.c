@@ -27,6 +27,10 @@ static RiskRuleFn RULES[] = {
 
 #define RULE_COUNT (sizeof(RULES) / sizeof(RULES[0]))
 
+/*
+ * Evaluates the risk level for a given input.
+ * Orchestrates validation, rule evaluation, hashing, and audit logging.
+ */
 RiskDecision evaluate_risk(const RiskInput* input, uint32_t expected_hash)
 {
     /* 1. Validate input (fail-closed) */

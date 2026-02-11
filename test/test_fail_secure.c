@@ -6,6 +6,9 @@
 #include "decision.h"
 
 /* Case 1: NULL input */
+/*
+ * Verifies that passing a NULL input results in a DENY decision.
+ */
 static void test_null_input(void)
 {
     RiskDecision d = evaluate_risk(NULL, 0);
@@ -13,6 +16,9 @@ static void test_null_input(void)
 }
 
 /* Case 2: Header missing */
+/*
+ * Verifies that an input with a missing header results in a DENY decision.
+ */
 static void test_missing_header(void)
 {
     RiskInput input = {
@@ -26,6 +32,9 @@ static void test_missing_header(void)
 }
 
 /* Case 3: Signal count mismatch */
+/*
+ * Verifies that a mismatch between declared signal count and actual signals is handled safely.
+ */
 static void test_invalid_signal_count(void)
 {
     static RiskInputHeader header = {
@@ -45,6 +54,9 @@ static void test_invalid_signal_count(void)
 }
 
 /* Case 4: Invalid expected hash */
+/*
+ * Verifies that a mismatch in the expected signal bitmap hash results in a DENY decision.
+ */
 static void test_hash_mismatch(void)
 {
     static RiskInputHeader header = {
@@ -64,6 +76,10 @@ static void test_hash_mismatch(void)
     assert(d == RISK_DENY);
 }
 
+/*
+ * Main entry point for fail-secure tests.
+ * Runs a suite of negative test cases to ensure secure defaults.
+ */
 int main(void)
 {
     test_null_input();

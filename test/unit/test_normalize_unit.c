@@ -6,7 +6,8 @@ void setUp(void) {}
 void tearDown(void) {}
 
 /*
- * Contract: NULL metadata must be rejected
+ * Contract: NULL metadata must be rejected.
+ * Verifies that the normalizer returns an error code when metadata is NULL.
  */
 void test_normalize_rejects_null_meta(void)
 {
@@ -16,7 +17,8 @@ void test_normalize_rejects_null_meta(void)
 }
 
 /*
- * Contract: NULL output pointer must be rejected
+ * Contract: NULL output pointer must be rejected.
+ * Verifies that the normalizer returns an error code when the output pointer is NULL.
  */
 void test_normalize_rejects_null_output(void)
 {

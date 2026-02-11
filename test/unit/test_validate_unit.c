@@ -15,7 +15,8 @@ void setUp(void) {}
 void tearDown(void) {}
 
 /*
- * Contract: NULL input must be rejected
+ * Contract: NULL input must be rejected.
+ * Verifies that the validator returns an error code when input is NULL.
  */
 void test_validate_null_input_is_rejected(void)
 {
@@ -24,7 +25,8 @@ void test_validate_null_input_is_rejected(void)
 }
 
 /*
- * Contract: structurally incomplete input must be rejected
+ * Contract: structurally incomplete input must be rejected.
+ * Verifies that the validator returns an error code when the header is missing.
  */
 void test_validate_missing_header_is_rejected(void)
 {
@@ -39,9 +41,8 @@ void test_validate_missing_header_is_rejected(void)
 }
 
 /*
- * Contract: validator must not accept partially-constructed inputs
- * We do NOT assert acceptance here because full validity requires
- * canonical engine-owned construction.
+ * Contract: validator must not accept partially-constructed inputs.
+ * Verifies rejection of incomplete data structures.
  */
 void test_validate_partially_constructed_input_is_rejected(void)
 {

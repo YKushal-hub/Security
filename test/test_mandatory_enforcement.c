@@ -15,6 +15,9 @@
  */
 
 /* Valid input generator */
+/*
+ * Creates a valid, minimal RiskInput for testing mandatory enforcement.
+ */
 static RiskInput make_valid_input(void)
 {
     static RiskInputHeader header = {
@@ -32,6 +35,10 @@ static RiskInput make_valid_input(void)
     return input;
 }
 
+/*
+ * Main entry point for mandatory enforcement tests.
+ * intentionally breaks the audit log to verify that the engine fails closed (DENY).
+ */
 int main(void)
 {
     RiskInput input = make_valid_input();

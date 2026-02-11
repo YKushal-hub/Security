@@ -11,6 +11,10 @@ static RiskInputHeader bad_header = {
 void setUp(void) {}
 void tearDown(void) {}
 
+/*
+ * Verifies that validation fails securely when passed an invalid header.
+ * The rule should strictly enforce integrity checks.
+ */
 void test_integrity_rule_invalid_header(void)
 {
     RiskInput input = {

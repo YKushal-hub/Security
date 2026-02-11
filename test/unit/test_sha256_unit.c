@@ -5,6 +5,10 @@
 void setUp(void) {}
 void tearDown(void) {}
 
+/*
+ * Verifies that the SHA-256 implementation is consistent.
+ * Two separate contexts processing the same data must produce the same hash.
+ */
 void test_sha256_consistency(void)
 {
     const uint8_t data[] = "abc";

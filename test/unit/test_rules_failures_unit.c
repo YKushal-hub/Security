@@ -23,6 +23,10 @@ void tearDown(void) {}
  * This test ensures it returns a valid RiskDecision
  * and does not crash for minimal valid input.
  */
+/*
+ * Contract: failure_rule operates on validated, non-NULL input.
+ * This test ensures it returns a valid RiskDecision and does not crash for minimal valid input.
+ */
 void test_failure_rule_minimal_input_is_safe(void)
 {
     RiskDecision d = failure_rule(&minimal_input);
